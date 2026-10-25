@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>राजस्थान शिक्षक व कर्मचारी DA एरियर एवं बोनस कैलकुलेटर (7th Pay)</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Top Header (Screen Only) -->
+  <header class="app-header no-print">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-logo">📊</div>
+        <div>
+          <h1>राजस्थान शिक्षक व कर्मचारी DA एरियर कैलकुलेटर</h1>
+          <p class="subtitle">7th Pay Commission (Level 1 से 16) • दिनांक-से-दिनांक (वर्ष, माह, दिन) स्वतः गणना • पूर्णतः ऑफ़लाइन</p>
+        </div>
+      </div>
+      <div class="header-badges">
+        <span class="badge badge-success">✓ 100% ऑफ़लाइन एवं सुरक्षित</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Navigation Tabs Bar (Screen Only) -->
+  <nav class="tabs-nav no-print">
+    <div class="nav-container">
+      <button class="nav-tab active" id="tabBtnSingle" onclick="switchTab('single')">
+        👤 व्यक्तिगत एरियर (Single Employee)
+      </button>
+      <button class="nav-tab" id="tabBtnStaff" onclick="switchTab('staff')">
+        👥 विद्यालय स्टाफ DDO शेड्यूल (Multi-Staff Bill)
+      </button>
+      <button class="nav-tab" id="tabBtnBonus" onclick="switchTab('bonus')">
+        🎁 तदर्थ / दिवाली बोनस (Bonus Module)
+      </button>
+      <button class="nav-tab" id="tabBtnMatrix" onclick="switchTab('matrix')">
+        📋 7th Pay Matrix (L1 - L16)
+      </button>
+      <button class="nav-tab" id="tabBtnGuide" onclick="switchTab('guide')">
+        📖 यूजर मैन्युअल (हिंदी गाइड)
+      </button>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <main class="main-wrapper">
+
+    <!-- Global Office / School Name Bar (Screen Only) -->
+    <section class="card office-card no-print">
+      <div class="office-box-container">
+        <div class="office-label-wrap">
+          <span class="office-icon">🏫</span>
+          <label for="topOfficeName"><strong>कार्यालय / विद्यालय का नाम (Office / School Name):</strong></label>
+          <span class="office-subtext">(यह नाम सभी प्रिंट आउट एवं PDF में सबसे ऊपर प्रदर्शित होगा)</span>
+        </div>
+        <div class="office-input-group">
+          <input type="text" id="topOfficeName" class="office-input-top" 
+                 value="" placeholder="कार्यालय / विद्यालय का नाम (उदा. कार्यालय प्राचार्य, राजकीय उच्च माध्यमिक विद्यालय, जयपुर)" 
+                 placeholder="उदा. कार्यालय प्राचार्य, राजकीय उच्च माध्यमिक विद्यालय, जयपुर" 
+                 oninput="onGlobalOfficeNameChange()">
+          <button type="button" class="btn btn-sm btn-outline" onclick="resetDefaultOfficeName()" title="डिफ़ॉल्ट नाम रीसेट करें">
+            🔄 रीसेट
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= TAB 1: SINGLE EMPLOYEE CALCULATOR ================= -->
+    <div id="tabSingle" class="tab-content active">
+
+      <!-- Global DA, Date-to-Date & Payment Settings Box (Screen Only) -->
+    <section class="card config-card no-print">
+      <div class="card-header">
+        <h3>⚙️ DA आदेश एवं दिनांक-से-दिनांक (Date to Date) सेटिंग्स</h3>
+        <span class="tag-pill">7th Pay Commission</span>
+      </div>
+
+      <!-- Settings Form Inputs Grid -->
+      <div class="config-grid">
+        <!-- Old DA -->
+        <div class="form-group">
+          <label for="inputOldDa">आहरित DA दर (Old DA %):</label>
+          <div class="input-unit">
+            <input type="number" id="inputOldDa" value="50" step="0.5" min="0" max="150" oninput="onConfigChange()">
+            <span class="unit">%</span>
+          </div>
+        </div>
+
+        <!-- New DA -->
+        <div class="form-group">
+          <label for="inputNewDa">देय DA दर (New DA %):</label>
+          <div class="input-unit">
+            <input type="number" id="inputNewDa" value="53" step="0.5" min="0" max="150" oninput="onConfigChange()">
+            <span class="unit">%</span>
+          </div>
+        </div>
+
+        <!-- DA Difference (Calculated) -->
+        <div class="form-group">
+          <label>DA अंतर (Difference %):</label>
+          <div class="diff-display">
+            <span id="displayDaDiff" class="text-accent">+3.0%</span>
+          </div>
+        </div>
+
+        <!-- Date From -->
+        <div class="form-group">
+          <label for="inputStartDate">प्रारंभिक दिनांक (Start Date):</label>
+          <input type="date" id="inputStartDate" value="2024-07-01" onchange="onConfigChange()">
+        </div>
+
+        <!-- Date To -->
+        <div class="form-group">
+          <label for="inputEndDate">अंतिम दिनांक (End Date):</label>
+          <input type="date" id="inputEndDate" value="2024-10-31" onchange="onConfigChange()">
+        </div>
+
+        <!-- Payment Mode -->
+        <div class="form-group">
+          <label for="selectPayMode">भुगतान का नियम (आदेशानुसार):</label>
+          <select id="selectPayMode" onchange="onConfigChange()" class="select-highlight">
+            <option value="cash_100">100% नकद भुगतान (Cash in Account)</option>
+            <option value="gpf_100">100% GPF / GPF-2004 में जमा</option>
+            <option value="split_50">50% नकद + 50% GPF में जमा</option>
+            <option value="custom">कस्टम अनुपात (% नकद / % GPF)</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Real-Time Duration Badge (Years, Months, Days Automatic Count) -->
+      <div class="duration-highlight-bar">
+        <span class="dur-icon">📅</span>
+        <div class="dur-text">
+          गणना अवधि (Automatic Count): <strong id="durTextDisplay" class="text-primary">0 वर्ष, 4 माह, 0 दिन</strong>
+          <span id="durDaysDisplay" class="dur-days-pill">(कुल 123 दिन)</span>
+        </div>
+      </div>
+
+      <!-- Half Day & FN/AN Options Bar (Screen Only) -->
+      <div class="half-day-options-bar">
+        <div class="half-day-toggle-wrap">
+          <span class="half-day-icon">⚖️</span>
+          <strong>अर्ध दिवस (1/2 दिन / 0.5 Day) विशेष प्रावधान:</strong>
+          <span class="text-muted" style="font-size: 12px;">(अपराह्न / पूर्वाह्न कार्यभार ग्रहण अथवा आधा दिन एरियर)</span>
+        </div>
+        <div class="half-day-actions">
+          <button type="button" class="btn btn-sm btn-outline" id="btnHalfDayQuick" onclick="applyOnlyHalfDay()" title="केवल 1/2 दिन (0.5 दिन) का एरियर सेट करें">
+            ⚡ केवल 1/2 दिन (0.5 Day) एरियर
+          </button>
+          <label class="fn-an-checkbox" title="यदि प्रारंभिक तिथि को दोपहर बाद (Afternoon) कार्यभार ग्रहण किया है (आधा दिन)">
+            <input type="checkbox" id="checkStartAn" onchange="onFnAnChange()">
+            <span>प्रारंभिक तिथि अपराह्न (AN - 0.5 दिन)</span>
+          </label>
+          <label class="fn-an-checkbox" title="यदि अंतिम तिथि को दोपहर से पहले (Forenoon) कार्यमुक्त हुए हैं (आधा दिन)">
+            <input type="checkbox" id="checkEndFn" onchange="onFnAnChange()">
+            <span>अंतिम तिथि पूर्वाह्न (FN - 0.5 दिन)</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Custom Split percentage box (hidden by default) -->
+      <div id="customSplitRow" class="custom-split-row hidden">
+        <div class="split-input-box">
+          <label for="customCashPct">नकद प्रतिशत (Cash %):</label>
+          <input type="number" id="customCashPct" value="50" min="0" max="100" oninput="syncSplitPct('cash')">
+        </div>
+        <div class="split-input-box">
+          <label for="customGpfPct">GPF प्रतिशत (GPF %):</label>
+          <input type="number" id="customGpfPct" value="50" min="0" max="100" oninput="syncSplitPct('gpf')">
+        </div>
+      </div>
+    </section>
+
+      
+      <!-- Employee Profile Bar (Screen Only) -->
+      <section class="card emp-card no-print">
+        <div class="card-header">
+          <h3>👤 कर्मचारी विवरण व बेसिक पे चयन (Level 1 से 16)</h3>
+          <span class="text-muted" style="font-size: 13px;">(यह जानकारी आधिकारिक A4 प्रिंट बिल पर स्वतः आएगी)</span>
+        </div>
+
+        <div class="emp-grid">
+          <div class="form-group">
+            <label for="empName">कर्मचारी का नाम:</label>
+            <input type="text" id="empName" placeholder="उदा. रमेश कुमार शर्मा" value="" placeholder="कर्मचारी का नाम दर्ज करें" oninput="updateSingleArrear()">
+          </div>
+
+          <div class="form-group">
+            <label for="empDesignation">पद (Designation):</label>
+            <input type="text" id="empDesignation" placeholder="उदा. वरिष्ठ अध्यापक / अध्यापक" value="" placeholder="पद दर्ज करें (उदा. वरिष्ठ अध्यापक)" oninput="updateSingleArrear()">
+          </div>
+
+          <div class="form-group">
+            <label for="empId">कर्मचारी ID / SIPF नंबर:</label>
+            <input type="text" id="empId" placeholder="उदा. RJAL201612001234" value="" placeholder="SIPF नंबर / कार्मिक ID" oninput="updateSingleArrear()">
+          </div>
+
+          <div class="form-group">
+            <label for="empSchool">विद्यालय / कार्यालय का नाम:</label>
+            <input type="text" id="empSchool" placeholder="उदा. रा.उ.मा.वि. जयपुर" value="" placeholder="कार्यालय / विद्यालय का नाम (उदा. कार्यालय प्राचार्य, राजकीय उच्च माध्यमिक विद्यालय, जयपुर)" oninput="onEmpSchoolChange()">
+          </div>
+        </div>
+
+        <!-- Quick 7th Pay Matrix Helper (Starting from Level-1) -->
+        <div class="matrix-helper-box">
+          <span class="matrix-title">🎯 Pay Matrix से आसान बेसिक पे चुनें (Level 1 से 16):</span>
+          
+          <div class="matrix-controls">
+            <div class="matrix-ctrl">
+              <label for="quickLevel">पे लेवल (Level):</label>
+              <select id="quickLevel" onchange="onQuickLevelChange()">
+                <option value="L-1">Level 1 (चतुर्थ श्रेणी / Peon, पुरानी GP ₹1700 - Basic ₹17,700)</option>
+                <option value="L-2">Level 2 (पुरानी GP ₹1750 - Basic ₹17,900)</option>
+                <option value="L-3">Level 3 (पुरानी GP ₹1900 - Basic ₹18,200)</option>
+                <option value="L-4">Level 4 (पुरानी GP ₹2000 - Basic ₹19,200)</option>
+                <option value="L-5">Level 5 (कनिष्ठ सहायक / LDC, पुरानी GP ₹2400 - Basic ₹20,800)</option>
+                <option value="L-6">Level 6 (पुरानी GP ₹2400 - Basic ₹21,500)</option>
+                <option value="L-7">Level 7 (पुरानी GP ₹2400 - Basic ₹22,400)</option>
+                <option value="L-8">Level 8 (वरिष्ठ सहायक / UDC, पुरानी GP ₹2800 - Basic ₹26,300)</option>
+                <option value="L-9">Level 9 (सहायक प्रशासनिक अधिकारी, पुरानी GP ₹2800 - Basic ₹28,700)</option>
+                <option value="L-10">Level 10 (अध्यापक L-3, पुरानी GP ₹3600 - Basic ₹33,800)</option>
+                <option value="L-11" selected>Level 11 (वरिष्ठ अध्यापक L-2, पुरानी GP ₹4200 - Basic ₹37,800)</option>
+                <option value="L-12">Level 12 (प्राध्यापक L-1, पुरानी GP ₹4800 - Basic ₹44,300)</option>
+                <option value="L-13">Level 13 (पुरानी GP ₹5400 - Basic ₹49,900)</option>
+                <option value="L-14">Level 14 (उप-प्रधानाचार्य / HM, पुरानी GP ₹6000 - Basic ₹56,100)</option>
+                <option value="L-15">Level 15 (पुरानी GP ₹6000 - Basic ₹60,700)</option>
+                <option value="L-16">Level 16 (प्रधानाचार्य / Principal, पुरानी GP ₹6600 - Basic ₹67,300)</option>
+              </select>
+            </div>
+
+            <div class="matrix-ctrl">
+              <label for="quickCell">सेल / इन्क्रीमेंट (Cell):</label>
+              <select id="quickCell" onchange="onQuickCellChange()"></select>
+            </div>
+
+            <div class="matrix-ctrl">
+              <label for="initialBasic">मूल वेतन (Basic Pay ₹):</label>
+              <input type="number" id="initialBasic" class="basic-highlight" value="43800" oninput="onManualBasicChange()">
+            </div>
+
+            <button type="button" class="btn btn-secondary" id="btnAutoFillBasic" onclick="autoFillBasicToAll()" title="सभी महीनों में यह बेसिक पे लागू करें">
+              ⚡ सभी महीनों में लागू करें
+            </button>
+          </div>
+          <div class="matrix-note">
+            💡 <strong>वार्षिक वेतन वृद्धि (1 जुलाई) टिप:</strong> यदि 1 जुलाई को आपका इन्क्रीमेंट लगा है, तो नीचे तालिका में जुलाई माह का बेसिक पे अलग से एडिट कर सकते हैं।
+          </div>
+        </div>
+      </section>
+
+      <!-- Month-by-Month Calculation Sheet -->
+      <section class="card table-card">
+        <div class="card-header no-print">
+          <h3>📋 मासिक DA एरियर गणना विवरणी (Month-wise Breakdown)</h3>
+          <div class="table-actions">
+            <button type="button" class="btn btn-success" onclick="printTab('single', 'portrait')">
+              🖨️ A4 शीट प्रिंट / PDF सेव करें (Ctrl + P)
+            </button>
+            <button type="button" class="btn btn-outline" onclick="exportSingleToCsv()">
+              📥 Excel / CSV निर्यात
+            </button>
+          </div>
+        </div>
+
+        <!-- ================= PURE PROFESSIONAL PRINT TEMPLATE (PRINT ONLY) ================= -->
+        <div class="print-official-doc print-only">
+          <!-- Office / School Name at the Very Top -->
+          <div class="print-top-office-box">
+            <div class="print-top-office-name" id="pTopOfficeNameDisplay">कार्यालय प्राचार्य, राजकीय उच्च माध्यमिक विद्यालय, जयपुर</div>
+          </div>
+
+          <div class="govt-print-header">
+            <div class="govt-crest">राजस्थान सरकार • वित्त विभाग (नियम प्रभाग)</div>
+            <h2 class="bill-main-title">महंगाई भत्ता (DA) एरियर एवं समायोजन गणना पत्रक</h2>
+            <div class="bill-sub-title">7th Pay Commission Pay Matrix (RCS Revised Pay Rules, 2017)</div>
+          </div>
+
+          <!-- Employee & Order Info Table -->
+          <table class="print-meta-table">
+            <tr>
+              <td class="meta-label">कर्मचारी का नाम:</td>
+              <td class="meta-val"><strong id="pName"></strong></td>
+              <td class="meta-label">पद (Designation):</td>
+              <td class="meta-val" id="pDesig"></td>
+            </tr>
+            <tr>
+              <td class="meta-label">कर्मचारी ID / SIPF:</td>
+              <td class="meta-val" id="pId"></td>
+              <td class="meta-label">विद्यालय / कार्यालय:</td>
+              <td class="meta-val" id="pSchool"></td>
+            </tr>
+            <tr>
+              <td class="meta-label">गणना समयावधि:</td>
+              <td class="meta-val" colspan="3">
+                दिनांक <strong id="pStartDate"></strong> से <strong id="pEndDate"></strong> तक 
+                (अवधि: <strong id="pDuration"></strong>, कुल <span id="pTotalDays"></span> दिन)
+              </td>
+            </tr>
+            <tr>
+              <td class="meta-label">DA दर विवरण:</td>
+              <td class="meta-val">
+                आहरित DA: <span id="pOldDa"></span>% • देय DA: <span id="pNewDa"></span>% • <strong>अंतर: <span id="pDiffDa"></span>%</strong>
+              </td>
+              <td class="meta-label">भुगतान / समायोजन:</td>
+              <td class="meta-val"><strong id="pPayMode"></strong></td>
+            </tr>
+          </table>
+
+          <!-- Print Table Container -->
+          <div id="printTableWrap"></div>
+
+          <!-- Official Certification Text -->
+          <div class="print-certificate-text">
+            प्रमाणित किया जाता है कि उपरोक्त गणना पत्रक में अंकित मूल वेतन, आहरित एवं देय डीए की दरों तथा तिथियों का मिलान कार्मिक के सेवा अभिलेख एवं पे-बिल से कर लिया गया है। गणना पूर्णतः सही एवं नियमानुसार है।
+          </div>
+        </div>
+
+        <!-- ================= ON-SCREEN INTERACTIVE TABLE ================= -->
+        <div class="table-responsive no-print">
+          <table class="arrear-table" id="singleArrearTable">
+            <thead>
+              <tr>
+                <th style="width: 45px;">क्र.</th>
+                <th>माह व वर्ष (अवधि)</th>
+                <th>दिन</th>
+                <th>मूल वेतन (Basic Pay ₹)</th>
+                <th>देय DA %</th>
+                <th>देय DA राशि (₹)</th>
+                <th>आहरित DA %</th>
+                <th>आहरित DA राशि (₹)</th>
+                <th>DA अंतर एरियर (₹)</th>
+                <th>GPF / GPF-2004 जमा (₹)</th>
+                <th>नकद देय एरियर (Cash ₹)</th>
+              </tr>
+            </thead>
+            <tbody id="singleTableBody">
+              <!-- Dynamically populated via JS -->
+            </tbody>
+            <tfoot>
+              <tr class="table-total-row">
+                <td colspan="3">कुल योग (TOTAL):</td>
+                <td id="totBasicDisplay">₹0</td>
+                <td>-</td>
+                <td id="totDueDaDisplay">₹0</td>
+                <td>-</td>
+                <td id="totDrawnDaDisplay">₹0</td>
+                <td id="totArrearDisplay" class="highlight-total">₹0</td>
+                <td id="totGpfDisplay">₹0</td>
+                <td id="totCashDisplay" class="highlight-cash">₹0</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+
+        <!-- Summary Metric Cards (Screen only) -->
+        <div class="summary-cards-grid no-print">
+          <div class="summary-card">
+            <div class="card-icon">💰</div>
+            <div class="card-info">
+              <span class="card-label">कुल सकल एरियर (Gross DA Arrear)</span>
+              <strong id="cardGrossArrear" class="card-val text-primary">₹0</strong>
+            </div>
+          </div>
+
+          <div class="summary-card">
+            <div class="card-icon">🏦</div>
+            <div class="card-info">
+              <span class="card-label">GPF / GPF-2004 में जमा राशि</span>
+              <strong id="cardGpfDeposit" class="card-val text-warning">₹0</strong>
+            </div>
+          </div>
+
+          <div class="summary-card highlight-card">
+            <div class="card-icon">💵</div>
+            <div class="card-info">
+              <span class="card-label">बैंक खाते में शुद्ध नकद देय (Net Cash)</span>
+              <strong id="cardNetCash" class="card-val text-success">₹0</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ================= TAB 2: MULTI-STAFF DDO ARREAR BILL ================= -->
+    <div id="tabStaff" class="tab-content">
+      
+      <!-- Staff DA Order Summary Banner (Screen Only) -->
+      <section class="card staff-da-banner-card no-print">
+        <div class="staff-da-banner-inner">
+          <div class="staff-da-info-group">
+            <span class="staff-da-icon">⚙️</span>
+            <div>
+              <div class="staff-da-title"><strong>स्टाफ बिल पर लागू DA आदेश व अवधि:</strong></div>
+              <div class="staff-da-text">
+                दिनांक <strong id="stBannerDates" class="text-primary">01 जुलाई 2024 से 31 अक्टूबर 2024</strong> 
+                (अवधि: <span id="stBannerDuration">4 माह, 123 दिन</span>) • 
+                DA दर: <strong id="stBannerDa" class="text-accent">50% ➔ 53% (+3.0%)</strong> • 
+                भुगतान: <span id="stBannerPayMode">100% नकद</span>
+              </div>
+            </div>
+          </div>
+          <div class="staff-da-actions">
+            <button type="button" class="btn btn-sm btn-outline" onclick="switchTab('single')" title="दिनांक व DA दर बदलने हेतु व्यक्तिगत एरियर टैब पर जाएं">
+              ✏️ DA आदेश व दिनांक बदलें
+            </button>
+          </div>
+        </div>
+      </section>
+<section class="card no-print">
+        <div class="card-header">
+          <h3>👥 विद्यालय स्टाफ DDO एरियर बिल शेड्यूल (Level 1 से 16 के समस्त कार्मिक)</h3>
+          <div class="header-actions">
+            <button type="button" class="btn btn-secondary" id="btnAddStaff" onclick="addStaffRow()">➕ नया कार्मिक जोड़ें</button>
+            <button type="button" class="btn btn-success" id="btnPrintStaff" onclick="printTab('staff', 'landscape')">🖨️ A4 लैंडस्केप प्रिंट / PDF</button>
+            <button type="button" class="btn btn-outline" id="btnExportStaffCsv" onclick="exportStaffToCsv()">📥 Excel में डाउनलोड करें</button>
+          </div>
+        </div>
+
+        <!-- Staff Toast Notification Bar -->
+        <div id="staffToast" class="staff-toast" style="display: none;"></div>
+
+        <p class="text-muted" style="margin-top: 0; font-size: 14px;">
+          विद्यालय के सभी शिक्षकों व कर्मचारियों (चतुर्थ श्रेणी L-1 से प्रधानाचार्य L-16 तक) का बेसिक पे दर्ज करके संपूर्ण विद्यालय का **DDO इनर बिल व ट्रेजरी शेड्यूल** एक साथ तैयार करें।
+        </p>
+
+        <div class="table-responsive">
+          <table class="arrear-table staff-table" id="staffTable">
+            <thead>
+              <tr>
+                <th style="width: 40px;">क्र.</th>
+                <th>कर्मचारी का नाम</th>
+                <th>पद</th>
+                <th>SIPF / ID</th>
+                <th>लेवल</th>
+                <th>मासिक बेसिक (₹)</th>
+                <th>अवधि</th>
+                <th>सकल एरियर (₹)</th>
+                <th>GPF जमा (₹)</th>
+                <th>नकद देय (₹)</th>
+                <th class="no-print" style="width: 50px;">हटाएं</th>
+              </tr>
+            </thead>
+            <tbody id="staffTableBody">
+              <!-- Dynamically populated via JS -->
+            </tbody>
+            <tfoot>
+              <tr class="table-total-row">
+                <td colspan="5">कुल योग (GRAND TOTAL):</td>
+                <td id="staffTotBasic">₹0</td>
+                <td id="staffTotDuration">-</td>
+                <td id="staffTotArrear" class="highlight-total">₹0</td>
+                <td id="staffTotGpf">₹0</td>
+                <td id="staffTotCash" class="highlight-cash">₹0</td>
+                <td class="no-print"></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </section>
+
+      <!-- Staff Print View (Print Only) -->
+      <div id="staffPrintContainer" class="print-official-doc print-only">
+        <!-- Office / School Name at the Very Top -->
+        <div class="print-top-office-box">
+          <div class="print-top-office-name" id="stTopOfficeNameDisplay">कार्यालय प्राचार्य, राजकीय उच्च माध्यमिक विद्यालय, जयपुर</div>
+        </div>
+
+        <div class="govt-print-header">
+          <div class="govt-crest">राजस्थान सरकार • वित्त विभाग (नियम प्रभाग)</div>
+          <h2 class="bill-main-title">विद्यालय स्टाफ DA एरियर शेड्यूल (DDO Inner Sheet)</h2>
+          <div class="bill-sub-title">दिनांक <span id="stDateRange"></span> तक का महंगाई भत्ता एरियर बिल</div>
+        </div>
+        <div id="staffPrintTableWrap"></div>
+      </div>
+    </div>
+
+        <!-- ================= TAB 3: DIWALI BONUS MODULE ================= -->
+    <div id="tabBonus" class="tab-content">
+      <section class="card bonus-card no-print">
+        <div class="card-header">
+          <div>
+            <h3>🎁 राजस्थान राज्य कर्मचारी तदर्थ (दिवाली) बोनस DDO शेड्यूल व गणना</h3>
+            <span class="badge badge-info">Level L-1 से L-12 तक के अराजपत्रित राज्य कर्मचारियों हेतु</span>
+          </div>
+          <div class="header-actions">
+            <button type="button" class="btn btn-primary" id="btnAddBonusStaff" onclick="addBonusStaffRow()">
+              ➕ नया कार्मिक जोड़ें
+            </button>
+            <button type="button" class="btn btn-success" id="btnPrintBonusStaff" onclick="printTab('bonus', 'landscape')">
+              🖨️ बोनस पत्रक A4 प्रिंट / PDF
+            </button>
+            <button type="button" class="btn btn-secondary" id="btnExportBonusCsv" onclick="exportBonusToCsv()">
+              📥 Excel में डाउनलोड करें
+            </button>
+          </div>
+        </div>
+
+        <div class="bonus-intro-box">
+          <p>
+            राजस्थान सरकार वित्त विभाग के आदेशानुसार प्रत्येक वर्ष दीपावली पर पे मैट्रिक्स <strong>Level L-1 से L-12</strong> (ग्रेड पे ₹4,800 तक) के अराजपत्रित राज्य कर्मचारियों को 30 दिन की परिलब्धियों के आधार पर अधिकतम <strong>₹7,000 की गणना सीमा</strong> के अधीन तदर्थ (दिवाली) बोनस स्वीकृत किया जाता है।
+          </p>
+        </div>
+
+        <!-- Bonus Master Settings Grid -->
+        <div class="bonus-form-grid">
+          <div class="form-group">
+            <label for="bonusCeiling">अधिकतम गणना सीमा (Bonus Ceiling ₹):</label>
+            <input type="number" id="bonusCeiling" value="7000" oninput="onBonusMasterChange()">
+            <span class="field-hint">मानक सीमा: ₹7,000 (30 दिन पर अधिकतम ₹6,774)</span>
+          </div>
+
+          <div class="form-group">
+            <label for="bonusDays">मानक गणना दिवस (Days):</label>
+            <select id="bonusDays" onchange="onBonusMasterChange()">
+              <option value="30" selected>30 दिन (मानक राजस्थान नियम)</option>
+              <option value="31">31 दिन (पूर्ण माह)</option>
+            </select>
+            <span class="field-hint">व्यक्तिगत कार्मिक के कम दिवस नीचे तालिका में बदल सकते हैं</span>
+          </div>
+
+          <div class="form-group">
+            <label for="bonusRuleSplit">भुगतान नियम (आदेशानुसार अनुपात):</label>
+            <select id="bonusRuleSplit" onchange="onBonusMasterChange()">
+              <option value="75_25" selected>75% नकद (Cash) + 25% GPF में जमा (मानक नियम)</option>
+              <option value="100_cash">100% नकद भुगतान (100% Cash)</option>
+              <option value="100_gpf">100% GPF खाते में जमा (100% GPF)</option>
+            </select>
+            <span class="field-hint">वर्तमान वित्त विभाग नियम: 75% नकद व 25% GPF</span>
+          </div>
+        </div>
+
+        <!-- Multi-Employee Staff Bonus Summary Cards (4 Cards) -->
+        <div class="bonus-cards-row" style="margin-bottom: 20px;">
+          <div class="b-card">
+            <span class="b-label">👥 कुल पात्र कार्मिक संख्या</span>
+            <strong id="bTotalStaffCount" class="b-val text-primary">0</strong>
+          </div>
+
+          <div class="b-card">
+            <span class="b-label">💰 कुल स्वीकृत तदर्थ बोनस (Gross)</span>
+            <strong id="bTotalGrossBonus" class="b-val text-primary">₹0</strong>
+          </div>
+
+          <div class="b-card b-highlight-cash">
+            <span class="b-label">💵 बैंक खाते में कुल नकद देय (75%)</span>
+            <strong id="bTotalCashPayable" class="b-val text-success">₹0</strong>
+          </div>
+
+          <div class="b-card">
+            <span class="b-label">🏛️ कुल GPF / GPF-2004 जमा (25%)</span>
+            <strong id="bTotalGpfDeposit" class="b-val text-warning">₹0</strong>
+          </div>
+        </div>
+
+        <!-- Notification / Toast Bar -->
+        <div id="bonusToast" class="bonus-toast" style="display: none;"></div>
+
+        <!-- Interactive Multi-Employee Bonus Table -->
+        <div class="table-container">
+          <table class="data-table" id="bonusStaffTable">
+            <thead>
+              <tr>
+                <th style="width: 35px;">क्र.</th>
+                <th>कर्मचारी का नाम</th>
+                <th>पद (Designation)</th>
+                <th>SIPF ID / कर्म. कोड</th>
+                <th style="width: 85px;">पे लेवल</th>
+                <th style="width: 80px;">गणना दिवस</th>
+                <th style="width: 95px;">गणना सीमा (₹)</th>
+                <th style="width: 105px;">सकल बोनस (₹)</th>
+                <th style="width: 105px;">नकद देय 75% (₹)</th>
+                <th style="width: 105px;">GPF जमा 25% (₹)</th>
+                <th class="no-print" style="width: 45px;">हटाएं</th>
+              </tr>
+            </thead>
+            <tbody id="bonusStaffTableBody"></tbody>
+            <tfoot>
+              <tr class="total-row">
+                <td colspan="5" style="text-align: right; font-weight: 700;">कुल योग (GRAND TOTAL):</td>
+                <td id="bonusTotDays" style="text-align: center; font-weight: 700;">-</td>
+                <td id="bonusTotCeiling" style="text-align: right; font-weight: 700;">-</td>
+                <td id="bonusTotGross" style="text-align: right; font-weight: 800; color: #1e3a8a;">₹0</td>
+                <td id="bonusTotCash" style="text-align: right; font-weight: 800; color: #16a34a;">₹0</td>
+                <td id="bonusTotGpf" style="text-align: right; font-weight: 800; color: #ca8a04;">₹0</td>
+                <td class="no-print"></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+
+
+      </section>
+
+      <!-- Bonus Print Template (Print Only) -->
+      <div id="bonusPrintContainer" class="print-official-doc print-only">
+        <!-- Office / School Name at the Very Top -->
+        <div class="print-top-office-box">
+          <div class="print-top-office-name" id="bTopOfficeNameDisplay">कार्यालय प्राचार्य, राजकीय उच्च माध्यमिक विद्यालय, जयपुर</div>
+        </div>
+
+        <div class="govt-print-header">
+          <div class="govt-crest">राजस्थान सरकार • वित्त विभाग (नियम प्रभाग)</div>
+          <h2 class="bill-main-title">राज्य कर्मचारी तदर्थ (दिवाली) बोनस DDO शेड्यूल व बिल पत्रक</h2>
+          <div class="bill-sub-title">राजस्थान सिविल सेवा (तदर्थ बोनस भुगतान) नियम • पे-मैट्रिक्स Level L-1 से L-12 के अराजपत्रित कार्मिकों हेतु</div>
+        </div>
+
+        <table class="print-meta-table">
+          <tr>
+            <td class="meta-label">वित्तीय वर्ष / सत्र:</td>
+            <td class="meta-val">2024-25 (आदेशानुसार)</td>
+            <td class="meta-label">पात्रता पे लेवल:</td>
+            <td class="meta-val">Level L-1 से L-12 (ग्रेड पे ₹4,800 तक)</td>
+          </tr>
+          <tr>
+            <td class="meta-label">अधिकतम परिलब्धियां सीमा:</td>
+            <td class="meta-val" id="pbCeilingDisplay">₹7,000</td>
+            <td class="meta-label">गणना दिवस आधार:</td>
+            <td class="meta-val" id="pbDaysDisplay">30 दिन (माह: 31 दिन)</td>
+          </tr>
+          <tr>
+            <td class="meta-label">भुगतान नियम (Ratio):</td>
+            <td class="meta-val" id="pbRuleDisplay">75% नकद + 25% GPF जमा</td>
+            <td class="meta-label">गणना सूत्र:</td>
+            <td class="meta-val"><code>(परिलब्धियां × दिन) ÷ 31</code></td>
+          </tr>
+        </table>
+
+        <div id="bonusPrintTableWrap"></div>
+
+        <div class="print-cert-text" style="margin-top: 15px; font-size: 8.5pt; color: #334155; line-height: 1.4;">
+          <strong>प्रमाण पत्र:</strong> प्रमाणित किया जाता है कि उपरोक्त तालिका में अंकित सभी कार्मिक राज्य सेवा में Level L-1 से L-12 के अराजपत्रित कर्मचारी हैं एवं वित्त विभाग द्वारा जारी आदेशानुसार तदर्थ बोनस के नियमानुसार पात्र हैं। उक्त राशि का पूर्व में आहरण नहीं किया गया है।
+        </div>
+      </div>
+    </div>
+
+    <!-- ================= TAB 4: 7TH PAY MATRIX REFERENCE ================= -->
+    <div id="tabMatrix" class="tab-content">
+      <section class="card">
+        <div class="card-header no-print">
+          <div>
+            <h3>📋 राजस्थान 7th Pay Commission Pay Matrix तालिका (Level 1 से 16)</h3>
+            <span class="tag-pill">RCS (Revised Pay) Rules, 2017</span>
+          </div>
+          <div class="header-actions">
+            <button type="button" class="btn btn-success" onclick="printTab('matrix', 'landscape')">
+              🖨️ 7th Pay Matrix A4 प्रिंट करें
+            </button>
+          </div>
+        </div>
+        
+        <!-- Pay Matrix Print Header (Print Only) -->
+        <div class="print-official-doc print-only">
+          <div class="print-top-office-box">
+            <div class="print-top-office-name" id="mxTopOfficeNameDisplay">कार्यालय प्राचार्य, राजकीय उच्च माध्यमिक विद्यालय, जयपुर</div>
+          </div>
+          <div class="govt-print-header">
+            <div class="govt-crest">राजस्थान सरकार • वित्त विभाग (नियम प्रभाग)</div>
+            <h2 class="bill-main-title">राजस्थान 7th Pay Commission Pay Matrix तालिका (Level 1 से 16)</h2>
+            <div class="bill-sub-title">राजस्थान सिविल सेवा (संशोधित वेतन) नियम, 2017 (RCS Revised Pay Rules, 2017) • समस्त 40 Cells</div>
+          </div>
+        </div>
+
+        <p class="text-muted no-print" style="margin-top: 0;">
+          यहाँ राजस्थान सिविल सेवा (संशोधित वेतन) नियम, 2017 के अनुसार पे-लेवल <strong>L-1 से L-16</strong> के सभी 40 सेल्स का आधिकारिक वेतन दिया गया है:
+        </p>
+
+        <div class="table-responsive">
+          <table class="matrix-full-table" id="matrixDisplayTable">
+            <!-- Rendered by JS -->
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <!-- ================= TAB 5: STEP-BY-STEP USER MANUAL IN HINDI ================= -->
+    <div id="tabGuide" class="tab-content">
+      <section class="card guide-card">
+        <div class="card-header no-print">
+          <div>
+            <h3>📖 राजस्थान शिक्षक व कर्मचारी DA एरियर कैलकुलेटर — उपयोग मार्गदर्शिका (User Manual)</h3>
+            <span class="tag-pill">सरल हिंदी में स्टेप-बाय-स्टेप गाइड</span>
+          </div>
+          <div class="header-actions">
+            <button type="button" class="btn btn-success" onclick="printTab('guide', 'portrait')">
+              🖨️ मार्गदर्शिका A4 प्रिंट करें
+            </button>
+          </div>
+        </div>
+
+        <!-- Guide Print Header (Print Only) -->
+        <div class="print-official-doc print-only">
+          <div class="print-top-office-box">
+            <div class="print-top-office-name" id="gdTopOfficeNameDisplay">कार्यालय प्राचार्य, राजकीय उच्च माध्यमिक विद्यालय, जयपुर</div>
+          </div>
+          <div class="govt-print-header">
+            <div class="govt-crest">राजस्थान शिक्षक व कर्मचारी DA एरियर एवं बोनस कैलकुलेटर</div>
+            <h2 class="bill-main-title">उपयोग मार्गदर्शिका एवं नियम निर्देशिका (User Manual)</h2>
+            <div class="bill-sub-title">दिनांक-से-दिनांक (वर्ष, माह, दिन) स्वतः गणना • 7th Pay Matrix (L-1 से L-16) • ट्रेजरी बिल तैयारी</div>
+          </div>
+        </div>
+
+        <div class="guide-steps-list">
+          
+          <div class="guide-step-item">
+            <div class="step-num">1</div>
+            <div class="step-body">
+              <h4>दिनांक-से-दिनांक (Date to Date) का चयन:</h4>
+              <p>
+                सरकारी आदेश के अनुसार <strong>प्रारंभिक दिनांक</strong> (जैसे <code>01-07-2024</code>) और <strong>अंतिम दिनांक</strong> (जैसे <code>31-10-2024</code>) चुनें।
+                सॉफ्टवेयर अपने आप गणना करके दिखाएगा कि कुल <strong>कितने वर्ष, कितने माह और कितने दिन</strong> की अवधि बनी है (जैसे <em>0 वर्ष, 4 माह, 0 दिन</em>)।
+              </p>
+            </div>
+          </div>
+
+          <div class="guide-step-item">
+            <div class="step-num">2</div>
+            <div class="step-body">
+              <h4>आहरित व देय DA दर सेट करना (Future-Proof):</h4>
+              <p>
+                सरकारी आदेश के अनुसार <strong>आहरित DA (Old DA %)</strong> और <strong>देय DA (New DA %)</strong> के बॉक्स में अपनी दरें दर्ज करें (जैसे 50% से 53%)।
+                सॉफ्टवेयर तुरंत प्रतिशत अंतर (+3.0%) निकाल लेगा। भविष्य में जब भी नया डीए आदेश आए (जैसे 53% से 56%), आप सीधे इन बॉक्सों में संख्या बदल सकते हैं।
+              </p>
+            </div>
+          </div>
+
+          <div class="guide-step-item">
+            <div class="step-num">3</div>
+            <div class="step-body">
+              <h4>पे-मैट्रिक्स (Level 1 से 16) से बेसिक पे चुनना:</h4>
+              <p>
+                <strong>पे लेवल (Level)</strong> चुनें (उदा. चतुर्थ श्रेणी L-1, LDC L-5, UDC L-8, अध्यापक L-10, वरिष्ठ अध्यापक L-11, प्राध्यापक L-12, प्रधानाचार्य L-16) और अपना <strong>सेल (Cell 1 से 40)</strong> चुनें। आपका मूल वेतन स्वतः सेट हो जाएगा। फिर <strong>"सभी महीनों में लागू करें"</strong> पर क्लिक करें।
+              </p>
+            </div>
+          </div>
+
+          <div class="guide-step-item">
+            <div class="step-num">4</div>
+            <div class="step-body">
+              <h4>1/2 दिन (आधा दिन / 0.5 Day), इन्क्रीमेंट व आनुपातिक गणना:</h4>
+              <p>
+                यदि 1 जुलाई को आपकी वार्षिक वेतन वृद्धि (Increment) लगी है, तो आप तालिका में जुलाई या उसके बाद के महीनों का बेसिक पे अलग से भी बदल सकते हैं। यदि कोई कार्मिक माह के बीच में कार्यभार ग्रहण करता है (जैसे 15 जुलाई), तो सॉफ्टवेयर उस माह के वास्तविक कार्य दिवसों के अनुसार <strong>आनुपातिक (Pro-Rata) एरियर</strong> की सटीक गणना करता है।
+              </p>
+            </div>
+          </div>
+
+          <div class="guide-step-item">
+            <div class="step-num">5</div>
+            <div class="step-body">
+              <h4>नकद भुगतान बनाम GPF समायोजन:</h4>
+              <p>
+                वित्त विभाग के आदेशानुसार ड्रॉपडाउन से चुनें कि एरियर <strong>100% नकद</strong> मिलना है, <strong>100% GPF</strong> खाते में जमा होना है, या <strong>50% नकद + 50% GPF</strong> में बटना है। सॉफ्टवेयर प्रत्येक माह के सामने नकद और GPF का स्पष्ट विवरण तैयार कर देता है।
+              </p>
+            </div>
+          </div>
+
+          <div class="guide-step-item">
+            <div class="step-num">6</div>
+            <div class="step-body">
+              <h4>स्वच्छ A4 PDF प्रिंट व Excel डाउनलोड (ट्रेजरी फॉर्मेट):</h4>
+              <p>
+                प्रत्येक टैब में दिए गए <strong>"प्रिंट / PDF"</strong> बटन पर क्लिक करें। प्रिंट में सॉफ्टवेयर के कोई भी फालतू बटन, बॉक्स या टैब्स नहीं दिखेंगे। सिर्फ आपके <strong>कार्यालय/विद्यालय का नाम सबसे ऊपर</strong>, राजस्थान सरकार वित्त विभाग का आधिकारिक पत्रक, कर्मचारी विवरण, माहवार एरियर तालिका तथा कुल योग ही स्वच्छ रूप में A4 पेज पर प्रिंट होंगे।
+              </p>
+            </div>
+          </div>
+
+          <div class="guide-step-item">
+            <div class="step-num">7</div>
+            <div class="step-body">
+              <h4>🎁 तदर्थ (दिवाली) बोनस DDO शेड्यूल व सामूहिक गणना:</h4>
+              <p>
+                Level L-1 से L-12 तक के अराजपत्रित राज्य कर्मचारियों हेतु सामूहिक बोनस बिल तैयार करें। <strong>'👥 DA स्टाफ से आयात करें'</strong> बटन दबाकर सीधे पात्र कार्मिकों को जोड़ें, या नए कार्मिक जोड़ें। मानक 30 दिन पर ₹7,000 की सीमा पर ₹6,774 सकल बोनस (75% नकद ₹5,081 + 25% GPF ₹1,693) स्वतः निकलता है। 1-क्लिक में A4 लैंडस्केप DDO शेड्यूल प्रिंट करें अथवा Excel में डाउनलोड करें।
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- Slim Footer (Screen Only) -->
+  <footer class="app-footer no-print">
+    <p>राजस्थान शिक्षक व कर्मचारी DA एरियर एवं बोनस कैलकुलेटर • Level 1 से Level 16 Pay Matrix</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

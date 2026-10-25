@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "name": "rajasthan-da-arrear-calculator",
+  "cleanUrls": true,
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/$1"
+    }
+  ]
+}

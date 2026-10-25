@@ -1,0 +1,1241 @@
+/* ===================================================
+   राजस्थान शिक्षक व कर्मचारी DA एरियर कैलकुलेटर - STYLES
+   =================================================== */
+
+:root {
+  --primary: #1e3a8a;
+  --primary-light: #2563eb;
+  --primary-dark: #0f172a;
+  --accent: #d97706;
+  --success: #16a34a;
+  --warning: #ca8a04;
+  --danger: #dc2626;
+  --bg-main: #f1f5f9;
+  --card-bg: #ffffff;
+  --border-color: #cbd5e1;
+  --text-main: #1e293b;
+  --text-muted: #64748b;
+  --font-family: 'Hind', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  --radius: 8px;
+  --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -2px rgba(0, 0, 0, 0.05);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  line-height: 1.6;
+  font-size: 15px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ================= HEADER ================= */
+.app-header {
+  background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+  color: #ffffff;
+  padding: 16px 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.header-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.brand-logo {
+  font-size: 32px;
+  background: rgba(255, 255, 255, 0.15);
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand h1 {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.3px;
+}
+
+.subtitle {
+  font-size: 13px;
+  color: #cbd5e1;
+  margin-top: 2px;
+}
+
+.header-badges {
+  display: flex;
+  gap: 8px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 4px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 20px;
+}
+
+.badge-success {
+  background: #22c55e;
+  color: #ffffff;
+}
+
+.badge-info {
+  background: #38bdf8;
+  color: #0f172a;
+}
+
+/* ================= NAVIGATION TABS ================= */
+.tabs-nav {
+  background: #ffffff;
+  border-bottom: 2px solid #e2e8f0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+.nav-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  overflow-x: auto;
+  padding: 0 16px;
+}
+
+.nav-tab {
+  background: none;
+  border: none;
+  padding: 14px 20px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.nav-tab:hover {
+  color: var(--primary-light);
+  background: #f8fafc;
+}
+
+.nav-tab.active {
+  color: var(--primary-light);
+  border-bottom-color: var(--primary-light);
+  background: #f1f5f9;
+}
+
+/* ================= MAIN WRAPPER ================= */
+.main-wrapper {
+  max-width: 1280px;
+  width: 100%;
+  margin: 20px auto;
+  padding: 0 16px;
+  flex: 1;
+}
+
+/* ================= CARDS ================= */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 20px 24px;
+  margin-bottom: 22px;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.card-header h3 {
+  font-size: 18px;
+  color: var(--primary-dark);
+  font-weight: 700;
+}
+
+.tag-pill {
+  font-size: 12px;
+  font-weight: 600;
+  background: #e0f2fe;
+  color: #0369a1;
+  padding: 3px 10px;
+  border-radius: 12px;
+}
+
+/* ================= PRESETS ROW ================= */
+.presets-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  background: #f8fafc;
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  margin-bottom: 18px;
+}
+
+.presets-label {
+  font-weight: 700;
+  font-size: 13px;
+  color: #475569;
+}
+
+.btn-preset {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  color: var(--text-main);
+}
+
+.btn-preset:hover {
+  border-color: var(--primary-light);
+  color: var(--primary-light);
+}
+
+.btn-preset.active {
+  background: var(--primary-light);
+  color: #ffffff;
+  border-color: var(--primary-light);
+}
+
+/* ================= FORMS & CONFIG GRID ================= */
+.config-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 5px;
+}
+
+.input-unit {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-unit input {
+  width: 100%;
+  padding: 8px 32px 8px 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.input-unit .unit {
+  position: absolute;
+  right: 10px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.diff-display {
+  padding: 8px 12px;
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+}
+
+.diff-display span {
+  font-size: 16px;
+  font-weight: 800;
+}
+
+.month-year-group {
+  display: flex;
+  gap: 6px;
+}
+
+select, input[type="text"], input[type="number"] {
+  font-family: inherit;
+  padding: 8px 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.15s ease;
+}
+
+select:focus, input:focus {
+  border-color: var(--primary-light);
+}
+
+.select-highlight {
+  background: #f8fafc;
+  font-weight: 600;
+  border-color: #94a3b8;
+}
+
+.custom-split-row {
+  display: flex;
+  gap: 20px;
+  background: #fffbeb;
+  border: 1px dashed #f59e0b;
+  padding: 12px 16px;
+  border-radius: 6px;
+  margin-top: 14px;
+}
+
+.split-input-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.split-input-box input {
+  width: 70px;
+  text-align: center;
+  font-weight: 700;
+}
+
+/* ================= EMPLOYEE INPUTS ================= */
+.emp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.matrix-helper-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 14px;
+}
+
+.matrix-title {
+  display: block;
+  font-weight: 700;
+  color: var(--primary-dark);
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.matrix-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px;
+}
+
+.matrix-ctrl {
+  display: flex;
+  flex-direction: column;
+}
+
+.matrix-ctrl label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.basic-highlight {
+  font-weight: 800;
+  color: #1e3a8a;
+  background: #eff6ff;
+  border-color: #93c5fd;
+  min-width: 120px;
+}
+
+.matrix-note {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 8px;
+}
+
+/* ================= BUTTONS ================= */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-success {
+  background: var(--success);
+  color: #ffffff;
+}
+
+.btn-success:hover {
+  background: #15803d;
+}
+
+.btn-secondary {
+  background: var(--primary-light);
+  color: #ffffff;
+}
+
+.btn-secondary:hover {
+  background: #1d4ed8;
+}
+
+.btn-outline {
+  background: #ffffff;
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+}
+
+.btn-outline:hover {
+  border-color: var(--primary-light);
+  color: var(--primary-light);
+}
+
+.btn-danger-sm {
+  background: #fee2e2;
+  color: var(--danger);
+  border: 1px solid #fca5a5;
+  padding: 4px 8px;
+  font-size: 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-danger-sm:hover {
+  background: var(--danger);
+  color: #ffffff;
+}
+
+/* ================= TABLES ================= */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.arrear-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin-top: 8px;
+}
+
+.arrear-table th, .arrear-table td {
+  padding: 10px 12px;
+  border: 1px solid #e2e8f0;
+  text-align: right;
+}
+
+.arrear-table th {
+  background: #f1f5f9;
+  color: #334155;
+  font-weight: 700;
+  text-align: center;
+}
+
+.arrear-table th:first-child, .arrear-table td:first-child {
+  text-align: center;
+}
+
+.arrear-table th:nth-child(2), .arrear-table td:nth-child(2) {
+  text-align: left;
+}
+
+.arrear-table tbody tr:hover {
+  background: #f8fafc;
+}
+
+.input-basic-inline {
+  width: 95px;
+  padding: 4px 6px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1e3a8a;
+  text-align: right;
+  border: 1px solid #94a3b8;
+  border-radius: 4px;
+}
+
+.table-total-row td {
+  background: #f8fafc;
+  font-weight: 800;
+  font-size: 15px;
+  border-top: 2px solid #64748b;
+}
+
+.highlight-total {
+  color: var(--primary-dark);
+  font-size: 16px;
+}
+
+.highlight-cash {
+  color: var(--success);
+  font-size: 16px;
+}
+
+/* ================= SUMMARY CARDS ================= */
+.summary-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px;
+  margin-top: 22px;
+}
+
+.summary-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.summary-card.highlight-card {
+  background: #f0fdf4;
+  border-color: #86efac;
+}
+
+.card-icon {
+  font-size: 32px;
+}
+
+.card-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-label {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.card-val {
+  font-size: 22px;
+  font-weight: 800;
+  margin-top: 2px;
+}
+
+.text-primary { color: var(--primary-light); }
+.text-success { color: var(--success); }
+.text-warning { color: var(--warning); }
+.text-accent { color: var(--accent); }
+
+/* ================= BONUS MODULE ================= */
+.bonus-intro-box {
+  background: #fefce8;
+  border-left: 4px solid #facc15;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  border-radius: 0 6px 6px 0;
+}
+
+.bonus-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.field-hint {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.bonus-result-box {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 18px;
+  margin-bottom: 22px;
+}
+
+.bonus-calc-formula {
+  font-size: 13px;
+  color: #475569;
+  margin-bottom: 14px;
+}
+
+.bonus-calc-formula code {
+  background: #e2e8f0;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+}
+
+.bonus-cards-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.b-card {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.b-highlight-cash {
+  background: #f0fdf4;
+  border-color: #86efac;
+}
+
+.b-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+
+.b-val {
+  font-size: 20px;
+  font-weight: 800;
+  margin-top: 4px;
+}
+
+.combined-package-card {
+  background: linear-gradient(135deg, #0f172a, #1e3a8a);
+  color: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.combined-package-card h4 {
+  font-size: 17px;
+  margin-bottom: 4px;
+}
+
+.combined-package-card p {
+  font-size: 13px;
+  color: #cbd5e1;
+  margin-bottom: 14px;
+}
+
+.combined-figures-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 14px;
+}
+
+.combined-figures-grid div {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 12px 14px;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+}
+
+.comb-final-highlight {
+  background: rgba(34, 197, 94, 0.25) !important;
+  border: 1px solid #22c55e;
+}
+
+.combined-figures-grid span {
+  font-size: 12px;
+  color: #cbd5e1;
+}
+
+.combined-figures-grid strong {
+  font-size: 20px;
+  font-weight: 800;
+  margin-top: 4px;
+}
+
+/* ================= DURATION HIGHLIGHT BAR & PILLS ================= */
+.duration-highlight-bar {
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  padding: 12px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.dur-icon {
+  font-size: 26px;
+}
+
+.dur-text {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1e3a8a;
+}
+
+.dur-days-pill {
+  background: #2563eb;
+  color: #ffffff;
+  padding: 2px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  margin-left: 8px;
+}
+
+.day-pill {
+  background: #e2e8f0;
+  color: #334155;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.pro-rata-badge {
+  background: #fef3c7;
+  color: #b45309;
+  border: 1px solid #fde68a;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-size: 10px;
+  margin-left: 5px;
+  font-weight: 700;
+}
+
+/* ================= USER GUIDE STYLES ================= */
+.guide-steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.guide-step-item {
+  display: flex;
+  gap: 16px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 16px 20px;
+  align-items: flex-start;
+}
+
+.step-num {
+  background: var(--primary-light);
+  color: #ffffff;
+  font-size: 18px;
+  font-weight: 800;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 4px rgba(37,99,235,0.3);
+}
+
+.step-body h4 {
+  color: var(--primary-dark);
+  margin-bottom: 6px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.step-body p {
+  color: #475569;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* ================= 7TH PAY MATRIX TABLE ================= */
+.matrix-full-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11px;
+  text-align: center;
+  min-width: 950px;
+}
+
+.matrix-full-table th, .matrix-full-table td {
+  padding: 5px 6px;
+  border: 1px solid #cbd5e1;
+  white-space: nowrap;
+}
+
+.matrix-full-table th {
+  background: #1e3a8a;
+  color: #ffffff;
+  font-weight: 700;
+  position: sticky;
+  top: 0;
+}
+
+.matrix-full-table tr:nth-child(even) {
+  background: #f8fafc;
+}
+
+/* ================= TAB DISPLAY TOGGLING ================= */
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ================= FOOTER ================= */
+.app-footer {
+  text-align: center;
+  padding: 16px;
+  color: var(--text-muted);
+  font-size: 13px;
+  border-top: 1px solid #e2e8f0;
+  background: #ffffff;
+  margin-top: auto;
+}
+
+/* ================= PURE PROFESSIONAL PRINT & PDF STYLES ================= */
+.print-only {
+  display: none;
+}
+
+@page {
+  size: A4 portrait;
+  margin: 12mm 10mm 12mm 10mm;
+}
+
+body.print-landscape {
+  @page {
+    size: A4 landscape;
+    margin: 10mm 10mm 10mm 10mm;
+  }
+}
+
+
+/* ================= HALF-DAY & FN/AN CONTROLS ================= */
+.half-day-options-bar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  background: #f1f5f9;
+  border: 1px dashed #94a3b8;
+  border-radius: var(--border-radius-sm);
+  padding: 8px 14px;
+  margin-top: 14px;
+}
+
+.half-day-toggle-wrap {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13.5px;
+  color: #1e293b;
+}
+
+.half-day-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.fn-an-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  color: #334155;
+  background: #ffffff;
+  padding: 4px 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  transition: all 0.15s ease;
+}
+
+.fn-an-checkbox:hover {
+  border-color: var(--primary-light);
+  background: #eff6ff;
+}
+
+.fn-an-checkbox input[type="checkbox"] {
+  cursor: pointer;
+}
+
+/* ================= EDITABLE DAYS CELL IN TABLE ================= */
+.days-cell-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.input-days-inline {
+  width: 68px;
+  padding: 3px 5px;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  border: 1.5px solid #94a3b8;
+  border-radius: 4px;
+  background: #f8fafc;
+  color: #0f172a;
+}
+
+.input-days-inline:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  background: #ffffff;
+}
+
+.days-quick-btns {
+  display: flex;
+  gap: 3px;
+}
+
+.btn-micro {
+  background: #e2e8f0;
+  border: 1px solid #cbd5e1;
+  border-radius: 3px;
+  font-size: 10.5px;
+  font-weight: 700;
+  padding: 1px 5px;
+  cursor: pointer;
+  color: #334155;
+  transition: all 0.15s ease;
+}
+
+.btn-micro:hover {
+  background: var(--primary-color);
+  color: #ffffff;
+  border-color: var(--primary-color);
+}
+
+
+/* ================= STAFF DA ORDER SUMMARY BANNER ================= */
+.staff-da-banner-card {
+  margin-bottom: 18px;
+  background: #f8fafc;
+  border: 1.5px solid #cbd5e1;
+  border-radius: var(--border-radius-sm);
+  padding: 12px 18px;
+}
+
+.staff-da-banner-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.staff-da-info-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.staff-da-icon {
+  font-size: 22px;
+}
+
+.staff-da-title {
+  font-size: 12.5px;
+  color: #475569;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.staff-da-text {
+  font-size: 14.5px;
+  color: #0f172a;
+  margin-top: 2px;
+}
+
+.staff-da-actions {
+  display: flex;
+  gap: 8px;
+}
+
+
+/* ================= BONUS MODULE MULTI-STAFF ADDITIONS ================= */
+.bonus-toast,
+.staff-toast {
+  background: #0f172a;
+  color: #ffffff;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 13.5px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-left: 4px solid #10b981;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  animation: fadeInDown 0.3s ease;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+#bonusStaffTable input[type="text"],
+#bonusStaffTable input[type="number"],
+#bonusStaffTable select {
+  font-family: inherit;
+  font-size: 13px;
+  padding: 5px 8px;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  background: #ffffff;
+  transition: var(--transition-fast);
+}
+
+#bonusStaffTable input[type="text"]:focus,
+#bonusStaffTable input[type="number"]:focus,
+#bonusStaffTable select:focus {
+  border-color: var(--primary-color);
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(30, 58, 138, 0.15);
+}
+
+#bonusStaffTable input[type="number"] {
+  text-align: right;
+  font-weight: 600;
+}
+
+@media print {
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-family: 'Hind', Arial, sans-serif !important;
+    font-size: 9.5pt !important;
+    line-height: 1.3 !important;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block !important;
+  }
+
+  /* Only show active tab when printing */
+  .tab-content:not(.active) {
+    display: none !important;
+  }
+
+  .tab-content.active {
+    display: block !important;
+  }
+
+  .main-wrapper {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .card {
+    border: none !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Office / School Name at the Very Top of Print */
+  .print-top-office-box {
+    text-align: center;
+    border-bottom: 2px solid #000000;
+    padding-bottom: 6px;
+    margin-bottom: 8px;
+  }
+
+  .print-top-office-name {
+    font-size: 15pt !important;
+    font-weight: 800 !important;
+    color: #000000 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    line-height: 1.25 !important;
+  }
+
+  /* Formal Government Header */
+  .govt-print-header {
+    text-align: center;
+    border-bottom: 2px solid #000000;
+    padding-bottom: 8px;
+    margin-bottom: 10px;
+  }
+
+  .govt-crest {
+    font-size: 11pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .bill-main-title {
+    font-size: 14pt;
+    font-weight: 800;
+    margin: 3px 0;
+    text-transform: uppercase;
+  }
+
+  .bill-sub-title {
+    font-size: 9pt;
+    color: #333333;
+  }
+
+  /* Metadata Info Table */
+  .print-meta-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9pt;
+    margin-bottom: 10px;
+    border: 1px solid #000000;
+  }
+
+  .print-meta-table td {
+    padding: 4px 8px;
+    border: 1px solid #000000;
+  }
+
+  .meta-label {
+    background: #f0f0f0 !important;
+    font-weight: 700;
+    width: 20%;
+  }
+
+  .meta-val {
+    width: 30%;
+  }
+
+  /* Table Grid */
+  .official-print-grid {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 8.5pt;
+    margin-top: 6px;
+  }
+
+  .official-print-grid th, .official-print-grid td {
+    border: 1px solid #000000 !important;
+    padding: 4px 6px;
+  }
+
+  .official-print-grid th {
+    background: #e5e5e5 !important;
+    color: #000000 !important;
+    font-weight: 800;
+    text-align: center;
+  }
+
+  .print-total-row td {
+    font-weight: 800 !important;
+    background: #f0f0f0 !important;
+    border-top: 2px solid #000000 !important;
+  }
+
+  /* Certificate Text */
+  .print-certificate-text {
+    margin-top: 14px;
+    font-size: 8.5pt;
+    line-height: 1.4;
+    text-align: justify;
+    border: 1px dashed #666666;
+    padding: 6px 10px;
+    background: #fafafa;
+  }
+
+  /* 7th Pay Matrix Print Styles */
+  .matrix-full-table {
+    width: 100% !important;
+    font-size: 6.5pt !important;
+    border-collapse: collapse !important;
+  }
+
+  .matrix-full-table th, .matrix-full-table td {
+    padding: 2.5px 3px !important;
+    border: 0.5px solid #000000 !important;
+    text-align: center !important;
+  }
+
+  .matrix-full-table th {
+    background: #e5e5e5 !important;
+    color: #000000 !important;
+    font-weight: 800 !important;
+  }
+
+  /* Guide Print Styles */
+  .guide-steps-list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+
+  .guide-step-item {
+    border: 1px solid #000000 !important;
+    padding: 8px 12px !important;
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    background: #ffffff !important;
+  }
+
+  .step-num {
+    background: #000000 !important;
+    color: #ffffff !important;
+  }
+}
